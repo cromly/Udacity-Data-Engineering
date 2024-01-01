@@ -1,0 +1,41 @@
+{
+	"name": "Load Current Year from SQL DB to Synapse",
+	"properties": {
+		"activities": [
+			{
+				"name": "Payroll Data from SQL DB to Synapse DB",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Payroll Data from SQL DB to Synapse DB",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ADLSG2_NYC_Payroll",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-louis-b/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-23T14:34:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

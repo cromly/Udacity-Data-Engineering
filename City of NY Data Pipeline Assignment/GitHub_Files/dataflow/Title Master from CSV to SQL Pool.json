@@ -1,0 +1,56 @@
+{
+	"name": "Title Master from CSV to SQL Pool",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TitleMaster_CSV_Source",
+						"type": "DatasetReference"
+					},
+					"name": "TitleMasterCSVSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "TitleMaster_Dedicated_SQL_Sink",
+						"type": "DatasetReference"
+					},
+					"name": "TitleMasterSQLPoolSink"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          TitleCode as integer,",
+				"          TitleDescription as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false,",
+				"     preferredIntegralType: 'integer',",
+				"     preferredFractionalType: 'float') ~> TitleMasterCSVSource",
+				"TitleMasterCSVSource sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          TitleCode as long,",
+				"          TitleDescription as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> TitleMasterSQLPoolSink"
+			]
+		}
+	}
+}

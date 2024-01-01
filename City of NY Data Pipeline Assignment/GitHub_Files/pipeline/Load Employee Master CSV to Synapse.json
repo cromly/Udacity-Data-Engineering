@@ -1,0 +1,41 @@
+{
+	"name": "Load Employee Master CSV to Synapse",
+	"properties": {
+		"activities": [
+			{
+				"name": "Employee Master from CSV to SQL Pool",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Employee Master from CSV to SQL Pool",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ADLSG2_NYC_Payroll",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "adlsnycpayroll-louis-b/dirstaging"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-23T14:39:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

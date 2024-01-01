@@ -1,0 +1,9 @@
+{
+	"name": "louis-data-factory-instance",
+	"location": "southafricanorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "360ade21-76f8-4a9b-8574-3d3eb4c2901a",
+		"tenantId": "db720f80-b5d4-443a-ad4c-58a4122c1987"
+	}
+}

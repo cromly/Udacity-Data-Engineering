@@ -1,0 +1,9 @@
+{
+	"name": "louis-datafactory-instance1",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c48fde3e-39a5-47ab-bbf8-c6a22b88066f",
+		"tenantId": "db720f80-b5d4-443a-ad4c-58a4122c1987"
+	}
+}
